@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altetia SOS</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #d8c8b7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .phone {
+    width: 300px;
+    height: 560px;
+    background-color: #f1e3d3;
+    border-radius: 28px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    padding: 24px;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  h2 {
+    text-align: center;
+    color: #1f2a44;
+  }
+
+  /* SOS Button */
+  .sos-btn {
+    margin-top: 70px;
+    width: 180px;
+    height: 180px;
+    background-color: #b33a3a;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 0 6px rgba(179,58,58,0.3);
+  }
+
+  /* Popup Form */
+  .popup {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -8px 20px rgba(0,0,0,0.25);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .popup.active {
+    transform: translateY(0);
+  }
+
+  label {
+    font-size: 0.8em;
+    color: #333;
+  }
+
+  input, textarea {
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.85em;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .send-btn {
+      background-color: #9EAE97;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .location {
+    font-size: 0.75em;
+    color: #555;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+  <h2>Emergency SOS</h2>
+
+  <button class="sos-btn" onclick="openSOS()">SOS</button>
+
+  <!-- SOS FORM -->
+  <div class="popup" id="sosForm">
+    <label>Emergency Type</label>
+    <input type="text" placeholder="e.g. Medical, Fire, Crime">
+
+    <label>Your Location</label>
+    <input type="text" id="locationField" readonly>
+
+    <div class="location" id="coords"></div>
+
+    <label>Extra Information</label>
+    <textarea rows="3" placeholder="Describe what’s happening"></textarea>
+
+    <button class="send-btn" onclick="location.href='help.html'">Send Alert</button>
+  </div>
+</div>
+
+<script>
+  function openSOS() {
+    document.getElementById("sosForm").classList.add("active");
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude.toFixed(5);
+          const lon = position.coords.longitude.toFixed(5);
+
+          document.getElementById("locationField").value =
+            "Location detected";
+
+          document.getElementById("coords").innerText =
+            `📍 Latitude: ${lat}, Longitude: ${lon}`;
+        },
+        () => {
+          document.getElementById("locationField").value =
+            "Location access denied";
+        }
+      );
+    } else {
+      document.getElementById("locationField").value =
+        "Geolocation not supported";
+    }
+  }
+</script>
+
+</body>
+</html>

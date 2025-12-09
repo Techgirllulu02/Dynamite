@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!---->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up Page</title>
+  <link rel="stylesheet" href="alteria.css">
+
+
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #55774e; /* light brown */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-container {
+  background: rgba(167, 229, 196, 0.27);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);  
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  width: 80%;
+  max-width: 300px;
+  margin: auto; /* centers inside phone */
+}
+
+.phone {
+  background-color: #D2BEAC;
+  width: 360px;
+  height: 640px;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center; /* vertical */
+  align-items: center;     /* horizontal */
+}
+
+.register-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000000;
+
+}
+
+.register-container p {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+/* Uncomment if you want the toggle password styling 
+.toggle-password {
+  float: right;
+  margin-top: -30px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #007b5e;
+}
+  */
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #e9e1d6;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #322e29;
+}
+    
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="phone">
+
+  <div class="register-container">
+    <h1>Sign Up</h1>
+   
+<!-- Registerion form for the Alteria  -->
+    <form action="" method="post">
+        <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" placeholder="Enter your email" />
+    </div>
+
+    <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="First Name">
+    </div>
+
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+      <!--<span class="toggle-password" onclick="togglePassword()">Show</span>-->
+    </div>
+
+    <div class="form-group">
+      <label for="Cpassword">Confrim Password</label>
+      <input type="password" id="Cpassword" placeholder="Confirm password" />
+      <!--<span class="toggle-password" onclick="togglePassword()">Show</span> -->
+    </div>
+
+
+   <button class="register-btn" type="submit">Register</button>
+    </form>
+    
+
+  </div>
+
+  </div>
+    <body>
+
+</html>

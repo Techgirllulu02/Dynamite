@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Emergency Contact</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #D2BEAC;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .phone {
+      background-color: #fff;
+      width: 260px;
+      height: 500px;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+  .circle {
+      width: 100px;
+      height: 100px;
+      background-image: url('images\0d42905fc5e9d14fa032d8ea0282bf68.jpg'); /* <-- add your image */
+      background-size: cover;       /* fill the circle */
+      background-position: center;  /* center the image */
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      margin-bottom: 30px;
+    }
+
+    .input-field {
+      width: 90%;
+      height: 40px;
+      background-color: #ddd;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    .add-btn {
+      margin-top: auto;
+      width: 80%;
+      height: 45px;
+      background-color: #9EAE97;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background-color: #a1cdc2;
+    }
+
+      .add-btnback {
+      margin-top: auto;
+      width: 80%;
+      height: 35px;
+      background-color: #294c19;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-btnback:hover {
+      background-color: #a1cdc2;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <!--<div class="circle"></div>-->
+
+    <img src="images\0d42905fc5e9d14fa032d8ea0282bf68.jpg" class="circle">
+
+    <form>
+
+    <input type="text" class="input-field" placeholder="Contact Name" />
+    <input type="tel" class="input-field" placeholder="Phone Number" />
+    <input type="text" class="input-field" placeholder="Relationship" />
+
+    </form>
+   
+    <button class="add-btn" onclick="location.href='emergency.html'">Add Contact</button>
+
+    <button class="add-btnback" onclick="location.href='emergency.html'">Back</button>
+  </div>
+</body>
+</html>
