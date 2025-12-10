@@ -9,7 +9,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #D2BEAC;
+  background-color: #D2BEAC; /* light brown */
   display: flex;
   justify-content: center;
   padding: 20px 0;
@@ -20,10 +20,11 @@ body {
       background-color: #ffff;
       width: 260px;
       height: 500px;
-      border-radius: 30px;
+      border-radius: 35px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
+      position: relative; /* allow decorative island/bezel positioning */
       padding: 30px 20px;
 
     }
@@ -33,11 +34,49 @@ body {
     }
 
     .header {
-      font-size: 1.5em;
+      font-size: 1.1em; /* slightly smaller */
       font-weight: bold;
-      text-align: center;
-      margin-bottom: 20px;
       color: #333;
+      margin-top: 8px; /* bring it down a little */
+      margin-bottom: 12px;
+      text-align: center; /* center the title */
+    }
+
+    /* Decorative "Dynamic Island" (iPhone-style) */
+    .phone .island {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 34px;
+      border-radius: 20px;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .phone .island::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #111 0%, #000 100%);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.35);
+      opacity: 0.95;
+    }
+
+    /* Side bezels / device rim shading */
+    .phone .side-bezels {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      border-radius: inherit;
+      background-image: linear-gradient(to right, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 6px, rgba(0,0,0,0) 6px, rgba(0,0,0,0) calc(100% - 6px), rgba(0,0,0,0.18) calc(100% - 6px), rgba(0,0,0,0.18) 100%);
     }
 
     .add-contact {
@@ -157,13 +196,104 @@ body {
 }
 
 
+.bottom-nav {
+  position: relative;
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  flex-shrink: 0;
+  margin: 0 -20px -30px -20px;
+  padding: 10px 20px;
+  z-index: 100;
+}
+
+/* Normal nav buttons */
+.nav-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  margin: 0 10px; /* spacing between nav buttons when centered */
+}
+
+.nav-btn svg { width: 22px; height: 22px; fill: #666; }
+
+.nav-btn:focus svg,
+.nav-btn:hover svg { fill: #333; }
+
+/* SOS button */
+.sos-btn {
+  background: #d62828;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  transform: translateY(-20px);
+  box-shadow: 0 10px 20px rgba(214, 40, 40, 0.5);
+}
+
+.sos-btn.active {
+  box-shadow: 0 14px 30px rgba(214,40,40,0.6);
+  animation: none; /* disable pulsing animation */
+}
+
+@keyframes pulse-sos {
+  0% { transform: translateY(-20px) scale(1); }
+  50% { transform: translateY(-22px) scale(1.06); }
+  100% { transform: translateY(-20px) scale(1); }
+}
+
+/* Icons size */
+.nav-btn span {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* Click feedback */
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.phone-box {
+  background-color: black;
+  border-radius: 40px;
+  border: #000000 7px solid;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.iphone-box{
+  background-color: black;
+  width: 100px;
+  height:20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 30%;
+}
+
+
 
 
   </style>
 </head>
 <body>
+
     <!--Phone box -->
+  <div class="phone-box">
   <div class="phone">
+    <div class="iphone-box"></div>
+ 
     <div class="header">Emergency Contacts</div>
 
 
@@ -281,5 +411,47 @@ body {
       renderSavedContacts();
     });
   </script>
+          </div>
+    </div>
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-btn" onclick="location.href='add-contact.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+          <span>Add</span>
+        </button>
+
+        <!-- CENTER SOS (active by default) -->
+        <button class="sos-btn active" aria-pressed="true" id="sosBtn" onclick="toggleSOS()">
+          SOS
+        </button>
+
+        <!-- EXTRA BUTTON -->
+        <button class="nav-btn" onclick="location.href='login.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm-7 9a7 7 0 0 1 14 0H5z"/></svg>
+          <span>Account</span>
+        </button>
+    </nav>
+
+    </div>
+</div>
 </body>
 </html>
+<script>
+  // Toggle SOS (simulated) — keeps it active by default
+  function toggleSOS() {
+    const btn = document.getElementById('sosBtn');
+    if (!btn) return;
+    const isActive = btn.classList.contains('active');
+    if (isActive) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+      btn.textContent = 'SOS';
+    } else {
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      btn.textContent = 'SOS';
+      // Simulate sending SOS — you can hook real behavior here
+      setTimeout(() => alert('SOS activated — help is on the way (simulated).'), 300);
+    }
+  }
+</script>
