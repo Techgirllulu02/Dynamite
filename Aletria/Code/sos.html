@@ -64,6 +64,8 @@
     transition: transform 0.3s ease;
   }
 
+
+
   .popup.active {
     transform: translateY(0);
   }
@@ -103,6 +105,13 @@
     color: #555;
   }
 
+  p{
+     font-size: 1.2em;
+     margin-top: 45px;
+     text-align: center;
+     color:#3b3838;
+  }
+
 </style>
 </head>
 
@@ -111,9 +120,11 @@
 <div class="phone">
   <h2>Emergency SOS</h2>
 
-  <button class="sos-btn" onclick="openSOS()">SOS</button>
+  <button class="sos-btn" onclick="location.href='help.html'">SOS</button>
 
-  <!-- SOS FORM -->
+  <p>Press the button to get help send to your location</p>
+
+  <!-- SOS FORM 
   <div class="popup" id="sosForm">
     <label>Emergency Type</label>
     <input type="text" placeholder="e.g. Medical, Fire, Crime">
@@ -128,35 +139,8 @@
 
     <button class="send-btn" onclick="location.href='help.html'">Send Alert</button>
   </div>
+-->
 </div>
-
-<script>
-  function openSOS() {
-    document.getElementById("sosForm").classList.add("active");
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const lat = position.coords.latitude.toFixed(5);
-          const lon = position.coords.longitude.toFixed(5);
-
-          document.getElementById("locationField").value =
-            "Location detected";
-
-          document.getElementById("coords").innerText =
-            `📍 Latitude: ${lat}, Longitude: ${lon}`;
-        },
-        () => {
-          document.getElementById("locationField").value =
-            "Location access denied";
-        }
-      );
-    } else {
-      document.getElementById("locationField").value =
-        "Geolocation not supported";
-    }
-  }
-</script>
 
 </body>
 </html>
