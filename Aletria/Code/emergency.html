@@ -161,6 +161,7 @@ body {
       text-align: center;
       /*box-shadow: 0 2px 6px rgba(0,0,0,0.1);*/
       border: none;
+      text-decoration: none;
     }
 
     .button-box :hover{
@@ -288,7 +289,70 @@ body {
   left: 30%;
 }
 
+/* SOS overlay */
+.sos-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #d62828;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+}
 
+.sos-overlay.hidden {
+  display: none;
+}
+
+.sos-overlay h2 {
+  margin-bottom: 10px;
+}
+
+.sos-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Call popover */
+.call-popover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -40%);
+  background: white;
+  color: #111;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  z-index: 10010;
+  width: 86%;
+  max-width: 220px;
+  text-align: center;
+}
+.call-popover.hidden { display: none; }
+.call-popover h4 { margin: 6px 0; font-size: 1em; }
+.call-popover .call-action { margin-top: 8px; display:flex; gap:8px; justify-content:center; }
+.call-popover .call-action a, .call-popover .call-action button { padding:8px 10px; border-radius:8px; border:none; cursor:pointer; }
+.call-popover .call-action a { background:#9EAE97; color:white; text-decoration:none; }
+.call-popover .call-action button { background:#f1f1f1; }
+
+.plinks {
+  color: #555;
+  font-size: 0.8em;
+  margin: 0 5px;
+}
 
 
   </style>
@@ -300,8 +364,15 @@ body {
   <div class="phone">
     <div class="iphone-box"></div>
  
-    <div class="header">Emergency Contacts</div>
+    <div class="header">
+      Emergency Contacts 
+    </div>
 
+  
+    
+
+
+      
 
 
     <!--<div class="add-contact">
@@ -311,74 +382,74 @@ body {
 
     <div class="container">
     <div class="contact-grid">
-    <!--Police Department-->
+     <!--Police Department-->
     
-    <button class="button-box" onclick="location.href='youtube.com'">
-      <div class="contact-card">
+    <a class="button-box" href="tel:10111" aria-label="Call Police">
+      <div class="contact-card" role="button">
         <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="100px" fill="#1f1f1f"><path d="m368-336 112-84 110 84-42-136 112-88H524l-44-136-44 136H300l110 88-42 136ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg>
         </div>
         <p class="contact-link">Police</p>
       </div>
-    </button>
+    </a>
 
-        <!--Fire Dept Contact Card-->
-    <button class="button-box" onclick="location.href='youtube.com'">
-      <div class="contact-card">
+         <!--Fire Dept Contact Card-->
+    <a class="button-box" href="tel:10177" aria-label="Call Fire Department">
+      <div class="contact-card" role="button">
         <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="100px" fill="#1f1f1f"><path d="M280-120q-50 0-85-35t-35-85h-40q-33 0-56.5-23.5T40-320v-200h440v-160q0-33 23.5-56.5T560-760h80v-40q0-17 11.5-28.5T680-840h40q17 0 28.5 11.5T760-800v40h22q26 0 47 15t29 40l58 172q2 6 3 12.5t1 13.5v267H800q0 50-35 85t-85 35q-50 0-85-35t-35-85H400q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T320-240q0-17-11.5-28.5T280-280q-17 0-28.5 11.5T240-240q0 17 11.5 28.5T280-200Zm400 0q17 0 28.5-11.5T720-240q0-17-11.5-28.5T680-280q-17 0-28.5 11.5T640-240q0 17 11.5 28.5T680-200ZM120-440v120h71q17-19 40-29.5t49-10.5q26 0 49 10.5t40 29.5h111v-120H120Zm440 120h31q17-19 40-29.5t49-10.5q26 0 49 10.5t40 29.5h71v-120H560v120Zm0-200h276l-54-160H560v160ZM40-560v-60h40v-80H40v-60h400v60h-40v80h40v60H40Zm100-60h70v-80h-70v80Zm130 0h70v-80h-70v80Zm210 180H120h360Zm80 0h280-280Z"/></svg>
         </div>
         <p class="contact-link">Fire Dept</p>
       </div>
-    </button>
+    </a>
 
-      <!--Hosiptal Contact Card-->
-    <button class="button-box" onclick="location.href='canva.com'">
-      <div class="contact-card">
+      <!--Ambulance Contact Card-->
+    <a class="button-box" href="tel:10177" aria-label="Call Ambulance">
+      <div class="contact-card" role="button">
         <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="100px" fill="#1f1f1f"><path d="M420-280h120v-140h140v-120H540v-140H420v140H280v120h140v140ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
         </div>
-        <p class="contact-link">Local Hosital</p>
+        <p class="contact-link">Local Hospital</p>
       </div>
-    </button>
-
-
-    <button class="button-box" onclick="location.href='canva.com'">
-      <div class="contact-card">
-        <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="100px" fill="#1f1f1f"><path d="M420-280h120v-140h140v-120H540v-140H420v140H280v120h140v140ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
-        </div>
-        <p class="contact-link">Private Hosiptal</p>
-      </div>
-    </button>
+    </a>
 
 
         <!--Security feature-->
 
-      <button class="button-box" onclick="location.href='pinterest.com'">
-        <div class="contact-card">
+      <a class="button-box" href="tel:0821234567" aria-label="Call Security">
+        <div class="contact-card" role="button">
             <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="100px" fill="#1f1f1f"><path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z"/></svg>
             </div>
-        <p class="contact-link">Private security</p>
+        <p class="contact-link">Private Security</p>
       </div>
-    </button>
+    </a>
       
     </div>
       <!-- Saved Contacts Section -->
             <div class="saved-contacts">
               <h3>Your Contacts</h3>
 
-              <div class="contact-rectangle">
+              <button class="contact-rectangle contact-btn" data-phone="0821234567" data-label="Mom" aria-label="Mom">
                 <span>Mom</span>
                 <small>082 123 4567</small>
-              </div>
+              </button>
 
-              <div class="contact-rectangle">
+              <button class="contact-rectangle contact-btn" data-phone="0719876543" data-label="Dad" aria-label="Dad">
                 <span>Dad</span>
-                <small> 071 987 6543</small>
-              </div>
+                <small>071 987 6543</small>
+              </button>
 
-              <div class="contact-rectangle">
-                <span> Brother </span>
+              <button class="contact-rectangle contact-btn" data-phone="0834567890" data-label="Brother" aria-label="Brother">
+                <span>Brother</span>
                 <small>083 456 7890</small>
-            </div>
+              </button>
           </div>
+          <div class="dropdown">
+
+      
+      <div class="dropdown-content">
+        <a class="plinks" href="privacy.html">Privacy Policy</a>
+        <a class="plinks" href="terms.html">Terms of Use</a>
+        <a class="plinks" href="disclaimer.html">Emergency Disclaimer</a>
+      </div>
+    </div>
     </div>
     <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
@@ -387,10 +458,8 @@ body {
           <span>Add</span>
         </button>
 
-        <!-- CENTER SOS (active by default) -->
-        <button class="sos-btn active" aria-pressed="true" id="sosBtn" onclick="toggleSOS()">
-          SOS
-        </button>
+        <!-- CENTER SOS -->
+        <button class="sos-btn" aria-pressed="false" id="sosBtn" onclick="toggleSOS()">SOS</button>
 
         <!-- EXTRA BUTTON -->
         <button class="nav-btn" onclick="location.href='login.html'">
@@ -398,27 +467,158 @@ body {
           <span>Account</span>
         </button>
     </nav>
+      <div class="sos-overlay hidden" id="sosOverlay">
+            <div class="sos-spinner"></div>
+            <h2>SOS REQUEST SENT</h2>
+            <p>Help is being notified</p>
+      </div>
+      <!-- Call popover (hidden by default) -->
+      <div id="callPopover" class="call-popover hidden" role="dialog" aria-hidden="true">
+        <h4 id="callLabel">Call</h4>
+        <div id="callNumber" style="font-weight:600; color:#333;">000 000 0000</div>
+        <div class="call-action">
+          <a id="callNow" href="#">Call</a>
+          <button id="callCancel" type="button">Cancel</button>
+        </div>
+      </div>
+  </div>
 
-    </div>
 </div>
-</body>
-</html>
-<script>
-  // Toggle SOS (simulated) — keeps it active by default
-  function toggleSOS() {
-    const btn = document.getElementById('sosBtn');
-    if (!btn) return;
-    const isActive = btn.classList.contains('active');
-    if (isActive) {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-pressed', 'false');
-      btn.textContent = 'SOS';
-    } else {
+
+  <script>
+    // Robust single-click SOS handler
+    function toggleSOS() {
+      const btn = document.getElementById('sosBtn');
+      const overlay = document.getElementById('sosOverlay');
+      if (!btn || !overlay) return;
+
+      // Prevent double-activation while processing
+      if (btn.dataset.processing === '1') return;
+      btn.dataset.processing = '1';
+
+      // Show overlay and update button state
+      overlay.classList.remove('hidden');
       btn.classList.add('active');
       btn.setAttribute('aria-pressed', 'true');
-      btn.textContent = 'SOS';
-      // Simulate sending SOS — you can hook real behavior here
-      setTimeout(() => alert('SOS activated — help is on the way (simulated).'), 300);
+
+      // Simulate sending SOS (replace with real network call if needed)
+      console.log('SOS: sending (simulated)');
+
+      // Auto-hide after 3s and reset state
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+        delete btn.dataset.processing;
+      }, 3000);
     }
-  }
-</script>
+
+    // Allow tapping the overlay to dismiss immediately (optional)
+    document.addEventListener('click', function (e) {
+      const overlay = document.getElementById('sosOverlay');
+      const btn = document.getElementById('sosBtn');
+      if (!overlay || !btn) return;
+      if (!overlay.classList.contains('hidden') && e.target === overlay) {
+        overlay.classList.add('hidden');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+        delete btn.dataset.processing;
+      }
+    });
+
+    // Call popover logic
+    function showCallPopover(phone, label) {
+      const pop = document.getElementById('callPopover');
+      const callLabel = document.getElementById('callLabel');
+      const callNumber = document.getElementById('callNumber');
+      const callNow = document.getElementById('callNow');
+      if (!pop || !callLabel || !callNumber || !callNow) return;
+      callLabel.textContent = label || 'Call';
+      callNumber.textContent = phone;
+      callNow.href = 'tel:' + phone.replace(/\s+/g, '');
+      pop.classList.remove('hidden');
+      pop.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideCallPopover() {
+      const pop = document.getElementById('callPopover');
+      if (!pop) return;
+      pop.classList.add('hidden');
+      pop.setAttribute('aria-hidden', 'true');
+    }
+
+    // Delegate clicks on any contact button
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest && e.target.closest('.contact-btn');
+      if (!btn) return;
+      e.preventDefault();
+      const phone = btn.getAttribute('data-phone');
+      const label = btn.getAttribute('data-label') || btn.textContent.trim();
+      if (!phone) return;
+      showCallPopover(phone, label);
+    });
+
+    // Cancel button
+    document.getElementById('callCancel').addEventListener('click', function () {
+      hideCallPopover();
+    });
+
+    // Clicking the call link will naturally open the dialer; clicking outside popover hides it
+    document.addEventListener('click', function (e) {
+      const pop = document.getElementById('callPopover');
+      if (!pop || pop.classList.contains('hidden')) return;
+      if (e.target === pop || pop.contains(e.target)) return; // inside popover
+      hideCallPopover();
+    });
+     // Load saved contacts from localStorage and render
+    function renderSavedContacts(){
+      const container = document.getElementById('savedContactsList');
+      container.innerHTML = '';
+      const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+      if(!contacts.length){
+        container.innerHTML = '<div style="text-align:center;color:#666">No saved contacts</div>';
+        return;
+      }
+      contacts.forEach((c, i) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'contact-rectangle';
+
+        const link = document.createElement('a');
+        link.href = 'tel:' + String(c.phone).replace(/\s+/g,'');
+        link.style = 'display:flex;justify-content:space-between;align-items:center;width:100%;color:inherit;text-decoration:none';
+        link.setAttribute('aria-label', 'Call ' + (c.name || 'contact'));
+
+        const name = document.createElement('span');
+        name.textContent = c.name || 'Unnamed';
+
+        const small = document.createElement('small');
+        small.textContent = c.phone || '';
+
+        const del = document.createElement('button');
+        del.textContent = '✕';
+        del.style = 'margin-left:8px;background:transparent;border:none;color:#a00;font-weight:bold;cursor:pointer';
+        del.setAttribute('aria-label','Delete contact');
+        del.addEventListener('click', function(e){
+          e.preventDefault();
+          const arr = JSON.parse(localStorage.getItem('contacts') || '[]');
+          arr.splice(i,1);
+          localStorage.setItem('contacts', JSON.stringify(arr));
+          renderSavedContacts();
+        });
+
+        link.appendChild(name);
+        link.appendChild(small);
+        wrap.appendChild(link);
+        wrap.appendChild(del);
+        container.appendChild(wrap);
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function(){
+      renderSavedContacts();
+    });
+  </script>
+
+</body>
+</html>

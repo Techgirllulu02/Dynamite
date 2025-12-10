@@ -101,14 +101,14 @@
 
     <button class="add-btnback" onclick="location.href='emergency.html'">Back</button>
 
-    <nav class="app-nav" role="navigation" aria-label="Main navigation">
+    <!--<nav class="app-nav" role="navigation" aria-label="Main navigation">
       <a class="nav-link" href="emergency.html">Home</a>
       <a class="nav-link" href="add-contact.html">Add</a>
       <a class="nav-link" href="sos.html">SOS</a>
       <a class="nav-link" href="help.html">Help</a>
       <a class="nav-link" href="login.html">Login</a>
       <a class="nav-link" href="register.html">Sign Up</a>
-    </nav>
+    </nav> -->
 
   <script>
     document.getElementById('addContactForm').addEventListener('submit', function(e){
@@ -125,7 +125,28 @@
       localStorage.setItem('contacts', JSON.stringify(contacts));
       // Redirect back to contacts page
       window.location.href = 'emergency.html';
+
+      
     });
+
+    function toggleSOS() {
+  const overlay = document.getElementById('sosOverlay');
+  const btn = document.getElementById('sosBtn');
+
+  if (!overlay || !btn) return;
+
+  overlay.classList.remove('hidden');
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
+
+  // Simulate backend handling
+  setTimeout(() => {
+    console.log('SOS sent to server (simulated)');
+  }, 1000);
+}
+
+
+    
   </script>
   </div>
 </body>
