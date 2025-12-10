@@ -40,6 +40,13 @@ button:hover {
   overflow: hidden;
 }
 
+/* Style used by emergency buttons when rendered as anchors */
+.button-box {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 
 
 

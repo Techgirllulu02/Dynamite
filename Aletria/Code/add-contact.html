@@ -64,7 +64,7 @@
     }
 
     .add-btn:hover {
-      background-color: #a1cdc2;
+      background-color: #294c19;
     }
 
       .add-btnback {
@@ -81,9 +81,6 @@
       transition: background-color 0.3s ease;
     }
 
-    .add-btnback:hover {
-      background-color: #a1cdc2;
-    }
   </style>
 </head>
 <body>
@@ -92,17 +89,35 @@
 
     <img src="images/0d42905fc5e9d14fa032d8ea0282bf68.jpg" class="circle" alt="contact image">
 
-    <form>
+    <form id="addContactForm">
 
-    <input type="text" class="input-field" placeholder="Contact Name" />
-    <input type="tel" class="input-field" placeholder="Phone Number" />
-    <input type="text" class="input-field" placeholder="Relationship" />
+    <input id="contactName" type="text" class="input-field" placeholder="Contact Name" />
+    <input id="contactPhone" type="tel" class="input-field" placeholder="Phone Number" />
+    <input id="contactRel" type="text" class="input-field" placeholder="Relationship" />
 
     </form>
    
-    <button class="add-btn" onclick="location.href='emergency.html'">Add Contact</button>
+    <button type="submit" form="addContactForm" class="add-btn">Add Contact</button>
 
     <button class="add-btnback" onclick="location.href='emergency.html'">Back</button>
+
+  <script>
+    document.getElementById('addContactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const rel = document.getElementById('contactRel').value.trim();
+      if(!phone){
+        alert('Please enter a phone number');
+        return;
+      }
+      const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+      contacts.push({ name: name, phone: phone, rel: rel });
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      // Redirect back to contacts page
+      window.location.href = 'emergency.html';
+    });
+  </script>
   </div>
 </body>
 </html>
