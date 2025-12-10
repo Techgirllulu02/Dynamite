@@ -47,6 +47,26 @@ button:hover {
   color: inherit;
 }
 
+/* App navigation bar used on top of pages */
+.app-nav{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  align-items:center;
+  padding:8px 0 12px 0;
+}
+.app-nav .nav-link{
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.app-nav .nav-link:hover{ background:#f0f0f0 }
+
 
 
 
